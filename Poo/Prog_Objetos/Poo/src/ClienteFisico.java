@@ -1,9 +1,8 @@
 public class ClienteFisico extends Cliente {
-
     private String CPF;
     private int qtdMaximaParcelas;
 
-    public ClienteFisico(String nome, String dataCadastro, String CPF, int qtdMaximaParcelas, String endereco) {
+    public ClienteFisico(String nome, Endereco endereco, String dataCadastro, String CPF, int qtdMaximaParcelas) {
         super(nome, endereco, dataCadastro);
         this.CPF = CPF;
         this.qtdMaximaParcelas = qtdMaximaParcelas;

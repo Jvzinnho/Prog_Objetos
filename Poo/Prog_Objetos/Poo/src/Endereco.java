@@ -14,13 +14,7 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
     }
-
-    public Endereco() {
-
-    }
-
     public String paraString(){
         return rua + "," + numero + "," + bairro + "," + cep + "," + cidade + "," + estado;
     }
-
 }
