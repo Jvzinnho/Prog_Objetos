@@ -24,8 +24,8 @@ public class Main {
 
             switch (opcao){
                 case 1:
-                    System.out.println("---Cadastro de Cliente---");
-                    System.out.println("Nome do Cliente:");
+                    System.out.println("---Cadastro de Cliente.Cliente---");
+                    System.out.println("Nome do Cliente.Cliente:");
                     String nome = scanner.next();
                     System.out.println("""
                             Data do cadastro:
@@ -33,8 +33,8 @@ public class Main {
                             """);
                     String dataCadastro = scanner.next();
 
-                    System.out.println("1. Cliente fisico");
-                    System.out.println("2. Cliente Juridico");
+                    System.out.println("1. Cliente.Cliente fisico");
+                    System.out.println("2. Cliente.Cliente Juridico");
                     int escolhaCliente = scanner.nextInt();
 
                     if (escolhaCliente == 1){

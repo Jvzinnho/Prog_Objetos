@@ -1,7 +1,12 @@
+import Cliente.Cliente;
+import Cliente.ClienteFisico;
+import Cliente.ClienteJuridico;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class Main {
     public static class MenuComJOptionPane { //criacao da classe estatica com a biblioteca do menu
@@ -10,7 +15,7 @@ public class Main {
             List<Cliente> clientes = new ArrayList<>();
             do {
                 String menu = "Menu:\n" +
-                        "1. Cadastro Cliente \n" +
+                        "1. Cadastro Cliente.Cliente \n" +
                         "2. Deletar cliente pelo CPF ou CNPJ \n" +
                         "3. Deletar cliente pelo nome \n" +
                         "4. Cadastro de Produtos\n" +
@@ -26,76 +31,110 @@ public class Main {
                 switch (escolha) {
                     case 1:
                         String tipoClienteStr = JOptionPane.showInputDialog(null,
-                                "1. Cliente físico\n" +
-                                        "2. Cliente Jurídico\nEscolha o tipo de cliente:");
+                                "1. Cliente.Cliente físico\n" +
+                                        "2. Cliente.Cliente Jurídico\n Escolha o tipo de cliente:");
 
                         int tipoCliente = Integer.parseInt(tipoClienteStr);
 
 
                         if (tipoCliente == 1) {
-                            String nome = JOptionPane.showInputDialog(null,
-                                    "Cliente fisico selecionado \n"
-                            +"Digite o nome do cliente:");
-                            String dataCadastro = JOptionPane.showInputDialog(null,"""
-                            Data do cadastro:
-                            Obs. Utilize XX/XX/XXXX
-                            """);
+                            JPanel panel = new JPanel(new GridLayout(0, 2)); // Painel com layout de grade para os pares de campos
+                            panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Adicionando um espaçamento ao redor do painel
 
-                          /*  String rua = JOptionPane.showInputDialog(null, "Digite o nome da rua:");
-                            String numero = JOptionPane.showInputDialog(null, "Digite o número:");
-                            String bairro = JOptionPane.showInputDialog(null, "Digite o nome do bairro:");
-                            String cep = JOptionPane.showInputDialog(null, "Digite o CEP:");
-                            String cidade = JOptionPane.showInputDialog(null, "Digite o nome da cidade:");
-                            String estado = JOptionPane.showInputDialog(null, "Digite o nome do estado:");
+                            JTextField nomeField = new JTextField(10);
+                            JTextField dataCadastroField = new JTextField(10);
+                            JTextField ruaField = new JTextField(10);
+                            JTextField numeroField = new JTextField(10);
+                            JTextField bairroField = new JTextField(10);
+                            JTextField cepField = new JTextField(10);
+                            JTextField cidadeField = new JTextField(10);
+                            JTextField estadoField = new JTextField(10);
+                            JTextField CPFField = new JTextField(10);
+                            JTextField qtdMaxParcelasField = new JTextField(10);
 
-                            Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado);
-                            */
-                            JTextField textField1 = new JTextField(10);
-                            JTextField textField2 = new JTextField(10);
-                            JTextField textField3 = new JTextField(10);
+                            addField(panel, "Digite o nome do cliente:", "", nomeField);
+                            addField(panel, "Data do cadastro:", "", dataCadastroField);
+                            addField(panel, "Digite o nome da rua:", "", ruaField);
+                            addField(panel, "Digite o número:", "", numeroField);
+                            addField(panel, "Digite o nome do bairro:", "", bairroField);
+                            addField(panel, "Digite o CEP:", "", cepField);
+                            addField(panel, "Digite o nome da cidade:", "", cidadeField);
+                            addField(panel, "Digite o nome do estado:", "", estadoField);
+                            addField(panel, "Digite o CPF do cliente (XXX.XXX.XXX-XX):", "", CPFField);
+                            addField(panel, "Quantas parcelas serão realizadas:", "", qtdMaxParcelasField);
 
-                            // Criando o painel para conter os campos de entrada
-                            JPanel panel = new JPanel();
-                            panel.setLayout(new GridLayout(3, 2)); // Define o layout do painel
-
-                            // Adicionando os componentes ao painel
-                            panel.add(new JLabel("Campo 1:"));
-                            panel.add(textField1);
-                            panel.add(new JLabel("Campo 2:"));
-                            panel.add(textField2);
-                            panel.add(new JLabel("Campo 3:"));
-                            panel.add(textField3);
-
-                            // Exibindo o JOptionPane com o painel
-                            int result = JOptionPane.showConfirmDialog(null, panel, "Painel com Inputs",
+                            int result = JOptionPane.showConfirmDialog(null, panel, "Cadastro de Cliente.Cliente Físico",
                                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                            // Verificando se o usuário pressionou OK
                             if (result == JOptionPane.OK_OPTION) {
-                                // Obtendo os valores dos campos de entrada
-                                String value1 = textField1.getText();
-                                String value2 = textField2.getText();
-                                String value3 = textField3.getText();
+                                String nome = nomeField.getText();
+                                String dataCadastro = dataCadastroField.getText();
+                                String rua = ruaField.getText();
+                                String numero = numeroField.getText();
+                                String bairro = bairroField.getText();
+                                String cep = cepField.getText();
+                                String cidade = cidadeField.getText();
+                                String estado = estadoField.getText();
+                                String CPF = CPFField.getText();
+                                int qtdMaxParcelas = Integer.parseInt(qtdMaxParcelasField.getText());
 
-                                // Fazendo algo com os valores inseridos (nesse exemplo, exibindo os valores)
-                                System.out.println("Valor do Campo 1: " + value1);
-                                System.out.println("Valor do Campo 2: " + value2);
-                                System.out.println("Valor do Campo 3: " + value3);
+                                Cliente clienteFisico = new ClienteFisico(nome, dataCadastro, CPF, qtdMaxParcelas, rua, numero, bairro, cep, cidade, estado);
+                                clientes.add(clienteFisico);
+
+                                JOptionPane.showMessageDialog(null, "Cadastro de cliente físico realizado.");
                             }
-                            String CPF = JOptionPane.showInputDialog(null, """
-                                    Digite o CPF do cliente:
-                                    Obs. seperar por . e -: XXX.XXX.XXX-XX
-                                    """);
-
-                            int qtdMaximaParcelas = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantas parcelas serao realizadas:"));
-
-                            Cliente clienteFisico =  new ClienteFisico(nome, dataCadastro, CPF, qtdMaximaParcelas, endereco);
-                            clientes.add(clienteFisico);
-
-                            JOptionPane.showMessageDialog(null, "Cadastro de cliente fisico realizado.");
                         }
-                        else if (tipoCliente == 2) {
 
+                        //Cliente.Cliente Jurídico
+                        else if (tipoCliente == 2) {
+                            JPanel panel = new JPanel(new GridLayout(0, 2)); // Painel com layout de grade para os pares de campos
+                            panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Adicionando um espaçamento ao redor do painel
+
+                            JTextField nomeField = new JTextField(10);
+                            JTextField dataCadastroField = new JTextField(10);
+                            JTextField ruaField = new JTextField(10);
+                            JTextField numeroField = new JTextField(10);
+                            JTextField bairroField = new JTextField(10);
+                            JTextField cepField = new JTextField(10);
+                            JTextField cidadeField = new JTextField(10);
+                            JTextField estadoField = new JTextField(10);
+                            JTextField cnpjField = new JTextField(10);
+                            JTextField razaoSocialField = new JTextField(10);
+                            JTextField prazoPagamentoField = new JTextField(10);
+
+                            addField(panel, "Digite o nome do cliente:", "", nomeField);
+                            addField(panel, "Data do cadastro:", "", dataCadastroField);
+                            addField(panel, "Digite o nome da rua:", "", ruaField);
+                            addField(panel, "Digite o número:", "", numeroField);
+                            addField(panel, "Digite o nome do bairro:", "", bairroField);
+                            addField(panel, "Digite o CEP:", "", cepField);
+                            addField(panel, "Digite o nome da cidade:", "", cidadeField);
+                            addField(panel, "Digite o nome do estado:", "", estadoField);
+                            addField(panel, "Digite o CNPJ do cliente:", "", cnpjField);
+                            addField(panel, "Digite a razão social:", "", razaoSocialField);
+                            addField(panel, "Prazo máximo para pagamento:", "", prazoPagamentoField);
+
+                            int result = JOptionPane.showConfirmDialog(null, panel, "Cadastro de Cliente.Cliente Jurídico",
+                                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                            if (result == JOptionPane.OK_OPTION) {
+                                String nome = nomeField.getText();
+                                String dataCadastro = dataCadastroField.getText();
+                                String rua = ruaField.getText();
+                                String numero = numeroField.getText();
+                                String bairro = bairroField.getText();
+                                String cep = cepField.getText();
+                                String cidade = cidadeField.getText();
+                                String estado = estadoField.getText();
+                                String cnpj = cnpjField.getText();
+                                String razaoSocial = razaoSocialField.getText();
+                                int prazoPagamento = Integer.parseInt(prazoPagamentoField.getText());
+
+                                Cliente clienteJuridico = new ClienteJuridico(nome, rua, numero, bairro, cep, cidade, estado, dataCadastro, cnpj, razaoSocial, prazoPagamento);
+                                clientes.add(clienteJuridico);
+
+                                JOptionPane.showMessageDialog(null, "Cadastro de cliente jurídico realizado.");
+                            }
                         }
                         else {
                             JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.");
@@ -126,13 +165,28 @@ public class Main {
             } while (escolha != 8);
         }
     }
+
+    private static void addField(JPanel panel, String label1, String label2, JTextField textField) {
+        JPanel fieldPanel = new JPanel(new GridLayout(0, 1)); // Sub-painel para o par de rótulo e campo
+        fieldPanel.setBorder(new EmptyBorder(0, 10, 0, 10)); // Adicionando espaçamento entre colunas
+
+        fieldPanel.add(new JLabel(label1));
+        fieldPanel.add(textField);
+        if (!label2.isEmpty()) {
+            fieldPanel.add(new JLabel(label2));
+        }
+
+        panel.add(fieldPanel);
+    }
 }
+
+
 
    /* public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         int opcao;
-        List<Cliente> clientes = new ArrayList<>();
+        List<Cliente.Cliente> clientes = new ArrayList<>();
         //do while para executar o menu em um loop, saindo apenas qnd o usuario digitar 8
         do {
 
@@ -150,8 +204,8 @@ public class Main {
 
             switch (opcao){
                 case 1:
-                    System.out.println("---Cadastro de Cliente---");
-                    System.out.println("Nome do Cliente:");
+                    System.out.println("---Cadastro de Cliente.Cliente---");
+                    System.out.println("Nome do Cliente.Cliente:");
                     String nome = scanner.next();
                     System.out.println("""
                             Data do cadastro:
@@ -159,8 +213,8 @@ public class Main {
                             """);
                     String dataCadastro = scanner.next();
 
-                    System.out.println("1. Cliente fisico");
-                    System.out.println("2. Cliente Juridico");
+                    System.out.println("1. Cliente.Cliente fisico");
+                    System.out.println("2. Cliente.Cliente Juridico");
                     int escolhaCliente = scanner.nextInt();
 
                     if (escolhaCliente == 1){

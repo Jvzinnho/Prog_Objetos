@@ -9,6 +9,6 @@ public class Cliente {
         dataCadastro = dataCadastro;
     }
     public String paraString(){
-        return "Nome:" + nome + "\nEndereco:" + endereco.paraString() + "\nData de Cadastro:" + dataCadastro;
+        return "Nome:" + nome + "\nCliente.Endereco:" + endereco.paraString() + "\nData de Cadastro:" + dataCadastro;
     }
 }
