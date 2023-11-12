@@ -11,7 +11,32 @@ public class ClienteJuridico extends Cliente{
         this.razaoSocial = razaoSocial;
         this.prazoMaximoPagamento = prazoMaximoPagamento;
     }
+
     public String paraString(){
-        return super.paraString() + "\nCNPJ:" + CNPJ + "\nRazao Social:" + razaoSocial + "\nPrazo maximo para pagamento:" + prazoMaximoPagamento;
+        return "CNPJ:" + getCNPJ() + "\nRazao Social:" + getRazaoSocial() + "\nPrazo maximo para pagamento:" + getPrazoMaximoPagamento();
+    }
+
+    public String getCNPJ() {
+        return CNPJ;
+    }
+
+    public void setCNPJ(String CNPJ) {
+        this.CNPJ = CNPJ;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public int getPrazoMaximoPagamento() {
+        return prazoMaximoPagamento;
+    }
+
+    public void setPrazoMaximoPagamento(int prazoMaximoPagamento) {
+        this.prazoMaximoPagamento = prazoMaximoPagamento;
     }
 }
