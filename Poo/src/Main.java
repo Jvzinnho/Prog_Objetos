@@ -14,16 +14,17 @@ import Produto.Produto;
 public class Main {
     public static class MenuComJOptionPane {
         public static void main(String[] args) {
-            List<Cliente> clientes = new ArrayList<>();
-            List<Produto> produtos = new ArrayList<>();
+            List<Cliente> clientes = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
+            List<Produto> produtos = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
 
             ClienteFisico clienteFisico1 = new ClienteFisico("João", "01/02/23", "34512354198"
                                                                 , 4, "Rua Aparecida", "211", "Vila Helena"
                                                                 , "18099080", "Sorocaba", "SP");
             clientes.add(clienteFisico1);
-            int escolha;
-            do {
-                String menu = "Menu:\n" +
+
+            int escolha; //Variavel para navegacao do menu
+            do { // Inicio de um Loop infinito onde para sair ou encerrar a atividade será necessario o usuario digitar o numero de sair (8)
+                String menu = "Menu: \n" +
                         "1. Cadastro Cliente \n" +
                         "2. Deletar cliente pelo CPF ou CNPJ \n" +
                         "3. Deletar cliente pelo nome \n" +
@@ -34,8 +35,9 @@ public class Main {
                         "8. Sair\n" +
                         "Escolha uma opção:";
 
-                String escolhaStr = JOptionPane.showInputDialog(null, menu);
-                escolha = Integer.parseInt(escolhaStr);
+                //Utilizando a classe JOptionPane para exibir uma caixa de dialogo ao usuario
+                String escolhaStr = JOptionPane.showInputDialog(null, menu); //Interface Grafica do usuario onde 'menu' ´q a mensagem exibida na caixa
+                escolha = Integer.parseInt(escolhaStr); //Recebimento de uma variavel do tipo String do usuario e entao a converte para um tipo inteiro
 
                 switch (escolha) {
                     case 1:
@@ -57,6 +59,7 @@ public class Main {
                         break;
                     case 5:
                         //Efetuação de uma compra
+
                         break;
                     case 6:
                         //Atualização da situação de pagamento de uma compra
@@ -77,6 +80,8 @@ public class Main {
         }
     }
 
+    //Definição do addField o qual adiciona um label e um campo de texto no painel do usuario
+    //o comeco do codigo é um metodo privado e estatico que não retorna valor
     private static void addField(JPanel panel, String label1, String label2, JTextField textField) {
         JPanel fieldPanel = new JPanel(new GridLayout(0, 1)); // Sub-painel para o par de rótulo e campo
         fieldPanel.setBorder(new EmptyBorder(0, 10, 0, 10)); // Adicionando espaçamento entre colunas

@@ -76,6 +76,7 @@ public class CadastroCliente {
             }
     }
 
+    //metodo para cadastrar um cliente do tipo ClienteJuridico, no qual este metodo tem oresente todos os campos de adição de caixa de dialogo e de obtenção de dados do usuario
     public static void cadastrarClienteJuridico(List<Cliente> clientes) {
 
         JPanel panel = new JPanel(new GridLayout(0, 2));
@@ -108,6 +109,7 @@ public class CadastroCliente {
         int result = JOptionPane.showConfirmDialog(null, panel, "Cadastro de Cliente Jurídico realizado.",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
+        // Processar os dados inseridos pelo usuário
         if (result == JOptionPane.OK_OPTION) {
             String nome = nomeField.getText();
             String dataCadastro = dataCadastroField.getText();
@@ -121,6 +123,7 @@ public class CadastroCliente {
             String razaoSocial = razaoSocialField.getText();
             int prazoMaxPagamento = Integer.parseInt(prazoMaxPagamentoField.getText());
 
+            // Criar um objeto ClienteJuridico e adicioná-lo à lista de clientes
             Cliente clienteJuridico = new ClienteJuridico(nome, rua, numero, bairro, cep, cidade, estado, dataCadastro, cnpj, razaoSocial, prazoMaxPagamento);
             clientes.add(clienteJuridico);
 
