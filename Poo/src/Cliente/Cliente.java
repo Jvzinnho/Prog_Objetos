@@ -12,6 +12,10 @@ public class Cliente extends Endereco{
         this.dataCadastro = dataCadastro;
     }
 
+    public static int getDadosFormatados() {
+        return 0;
+    }
+
     public String paraString(){
         return "Nome:" + getNome() + "\nCliente.Endereco:" + getEndereco().paraString() + "\nData de Cadastro:" + getDataCadastro();
     }

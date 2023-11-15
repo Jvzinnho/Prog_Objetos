@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.BufferedWriter;
 import javax.swing.border.EmptyBorder;
 import AcoesCliente.CadastroCliente;
 import AcoesCliente.DeletaClienteCpfCnpj;
@@ -19,11 +20,18 @@ import Produto.Produto;
 public class Main {
     public static class MenuComJOptionPane {
         public static void main(String[] args) throws IOException {
+
             File file = new File("../baseDados/clientes.txt");
             boolean existe = file.exists();
             file.createNewFile();
 
-            FileWriter fw = new FileWriter(file, true);
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("clientes.txt"))) {
+                // Escrever os dados do cliente no arquivo
+                bw.write(Cliente.getDadosFormatados());
+                JOptionPane.showInputDialog(null, "Dados do cliente escritos com sucesso.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             List<Cliente> clientes = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
             List<Produto> produtos = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
