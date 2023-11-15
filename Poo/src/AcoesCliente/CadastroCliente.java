@@ -1,8 +1,8 @@
 package AcoesCliente;
 
+import Cliente.Cliente;
 import Cliente.ClienteFisico;
 import Cliente.ClienteJuridico;
-import Cliente.Cliente;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;

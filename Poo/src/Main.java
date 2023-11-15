@@ -2,20 +2,32 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 import javax.swing.border.EmptyBorder;
 import AcoesCliente.CadastroCliente;
 import AcoesCliente.DeletaClienteCpfCnpj;
 import AcoesCliente.DeletaClienteNome;
+import AcoesCompra.EfetuarCompra;
 import AcoesProduto.CadastroProduto;
 import Cliente.Cliente;
 import Cliente.ClienteFisico;
+import Compra.Compra;
 import Produto.Produto;
 
 public class Main {
     public static class MenuComJOptionPane {
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IOException {
+            File file = new File("../baseDados/clientes.txt");
+            boolean existe = file.exists();
+            file.createNewFile();
+
+            FileWriter fw = new FileWriter(file, true);
+
             List<Cliente> clientes = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
             List<Produto> produtos = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
+            List<Compra> compras = new ArrayList<>(); //instanciando uma coleção parametrizada com a classe
 
             ClienteFisico clienteFisico1 = new ClienteFisico("João", "01/02/23", "34512354198"
                                                                 , 4, "Rua Aparecida", "211", "Vila Helena"
@@ -59,7 +71,7 @@ public class Main {
                         break;
                     case 5:
                         //Efetuação de uma compra
-
+                        EfetuarCompra.escolhaOpcao(compras, clientes, produtos);
                         break;
                     case 6:
                         //Atualização da situação de pagamento de uma compra

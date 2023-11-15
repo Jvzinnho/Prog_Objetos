@@ -19,8 +19,11 @@ public class ClienteFisico extends Cliente {
     }
 
     public String getCPF() {
-
         return CPF;
+    }
+
+    public String getCpfCnpj() {
+        return getCPF();
     }
 
     public void setCPF(String CPF) {

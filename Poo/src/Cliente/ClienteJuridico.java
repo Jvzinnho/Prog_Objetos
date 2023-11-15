@@ -22,6 +22,10 @@ public class ClienteJuridico extends Cliente{
         return CNPJ;
     }
 
+    public String getCpfCnpj() {
+        return getCNPJ();
+    }
+
     public void setCNPJ(String CNPJ) {
         this.CNPJ = CNPJ;
     }

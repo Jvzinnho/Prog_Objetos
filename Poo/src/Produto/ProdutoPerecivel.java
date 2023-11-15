@@ -1,8 +1,6 @@
 package Produto;
 
-import java.util.Date;
-
-public class ProdutoPerecivel extends Produto{
+public class ProdutoPerecivel extends Produto {
     private boolean perecivel;
     private String validade;
 
@@ -31,5 +29,10 @@ public class ProdutoPerecivel extends Produto{
 
     public void setValidade(String validade) {
         this.validade = validade;
+    }
+
+    @Override
+    public String toString() {
+        return getNomeProduto();
     }
 }

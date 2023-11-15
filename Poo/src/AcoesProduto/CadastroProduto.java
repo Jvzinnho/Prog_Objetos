@@ -6,7 +6,6 @@ import Produto.ProdutoPerecivel;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.Date;
 import java.util.List;
 
 public class CadastroProduto {
@@ -97,10 +96,10 @@ public class CadastroProduto {
             double preco = Double.parseDouble(precoField.getText());
 
             // Criar um objeto Produto e adicioná-lo à lista de produtos
-            Produto itemDeCompra = new Produto(codigo, nomeProduto, descricao, preco);
-            produtos.add(itemDeCompra);
+            Produto produto = new Produto(codigo, nomeProduto, descricao, preco);
+            produtos.add(produto);
             JOptionPane.showMessageDialog(null, "Cadastro de Produto realizado com sucesso.");
-            JOptionPane.showMessageDialog(null, itemDeCompra.paraString());
+            JOptionPane.showMessageDialog(null, produto.paraString());
         }
     }
 
